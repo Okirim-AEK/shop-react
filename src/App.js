@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import ProductList from './pages/ProductList';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+import Contact from './pages/Contact';
+import ProductDetail from './pages/ProductDetail';
+import ProductCreate from './pages/ProductCreate';
+import {useState} from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,Redirect
+} from "react-router-dom";
+const App = () => {
+   const [isAdmin,setIsAdmin]=useState(false)
+    return (
+        <Router>
+            <NavBar />
+            <Switch>
+                <Route path='/' exact>
+                   <ProductList />
+                </Route>
+                <Route path='/contact'>
+                    <Contact />
+                </Route>
+               
+                 <Route path='/products/category/:category' >
+                    <ProductList />
+                </Route>
+              
+                <Route path='/products/create' exact>
+                    <ProductCreate />
+                </Route>
+                   <Route path='/products/:id' exact>
+                     <ProductDetail/>
+                </Route>
+            </Switch>
+           <Footer />
+        </Router>
+    )
 }
-
-export default App;
+export default App

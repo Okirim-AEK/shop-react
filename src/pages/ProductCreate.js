@@ -27,8 +27,7 @@ function ProductCreate() {
             image: imageValue,
             category:categoryValue
         }
-        axios
-            .post('https://fakestoreapi.com/products', data)
+        axios.post('https://fakestoreapi.com/products', data)
              .then((res)=>console.log(res))
     }
     return (
@@ -37,7 +36,7 @@ function ProductCreate() {
             <Input type='text' placeholder='price' ref={ price} />
             <Input type='text' placeholder='description' ref={ description} />
             <Input type='text' placeholder='image' ref={ image} />
-            <Select label='select category' data={categories} ref={category} />
+            <Select defaultSelectText='select category' data={categories} ref={category} />
             <button className='bg-green-500 px-4 py-2 rounded block mt-2'
                 onClick={addProduct}>save</button>
             

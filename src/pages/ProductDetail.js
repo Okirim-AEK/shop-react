@@ -2,10 +2,11 @@ import React from 'react';
 import {useParams,useHistory} from 'react-router-dom'
 import useQuery from "../api/useQuery";
 function ProductDetail() {
-    const {id} = useParams();
+   //params:{id:6 }
+  const params = useParams();
   const history = useHistory();
-
-    const url = `https://fakestoreapi.com/products/${id}`;
+ 
+    const url = `https://fakestoreapi.com/products/${params.id}`;
  
 const [product,isLoading,error]=useQuery(url)
     return (

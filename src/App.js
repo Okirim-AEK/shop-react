@@ -5,14 +5,15 @@ import Footer from './components/Footer';
 import Contact from './pages/Contact';
 import ProductDetail from './pages/ProductDetail';
 import ProductCreate from './pages/ProductCreate';
+import Cart from './pages/Cart';
 import {useState} from 'react'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,Redirect
+  Route
 } from "react-router-dom";
 const App = () => {
-   const [isAdmin,setIsAdmin]=useState(false)
+  
     return (
         <Router>
             <NavBar />
@@ -28,11 +29,14 @@ const App = () => {
                     <ProductList />
                 </Route>
               
-                <Route path='/products/create' exact>
+                <Route path='/products/create' >
                     <ProductCreate />
                 </Route>
-                   <Route path='/products/:id' exact>
+                   <Route path='/products/:id' >
                      <ProductDetail/>
+                </Route>
+                   <Route path='/cart' >
+                     <Cart/>
                 </Route>
             </Switch>
            <Footer />

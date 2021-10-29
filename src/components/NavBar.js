@@ -14,6 +14,7 @@ function NavBar() {
         setIsOpen(!isOpen)
     };
     const renderCat = categories.map((category, i) => (
+        //['jewlery',.....]
         <Link key={i}  to={`/products/category/${category}`}>
             <div >
                 {category}
@@ -51,9 +52,9 @@ function NavBar() {
     return (
         <div  className='flex justify-center items-center
         text-md font-semibold cursor-pointer  h-20 w-full bg-gray-300'>
-            <NavLink isActive={(match) => {
+            <NavLink isActive={(match) => {//{match:{isExact:true}} or match=null
                  if (match==null) {
-                    
+                     return false;
                 }else{
                   return  match.isExact
                 }
@@ -67,9 +68,9 @@ function NavBar() {
                 </div>}</div>
             <NavLink isActive={(match) => {
                 if (match==null) {
-                    
+                    return false;
                 }else{
-                  return  match.isExact
+                    return match.isExact;
                 }
             }} activeClassName='bg-green-500 text-green-100'
                 to='/contact'
@@ -84,7 +85,10 @@ function NavBar() {
                 }
             }} activeClassName='bg-green-500 text-green-100'  to='/products/create' className='ml-12 hover:text-gray-700 '>
                 add product
-               </NavLink>
+            </NavLink>
+            <NavLink to='/cart' className='ml-12 hover:text-gray-700 '>
+                Cart
+            </NavLink>
         </div >
     );
 }

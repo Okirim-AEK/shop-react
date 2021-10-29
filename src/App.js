@@ -12,11 +12,14 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import CartProvider from './store/CartProvider';
+
 const App = () => {
-  
+ 
     return (
+    <CartProvider>
         <Router>
-            <NavBar />
+                 <NavBar />
             <Switch>
                 <Route path='/' exact>
                    <ProductList />
@@ -41,6 +44,7 @@ const App = () => {
             </Switch>
            <Footer />
         </Router>
+    </CartProvider>
     )
 }
 export default App

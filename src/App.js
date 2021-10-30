@@ -6,13 +6,13 @@ import Contact from './pages/Contact';
 import ProductDetail from './pages/ProductDetail';
 import ProductCreate from './pages/ProductCreate';
 import Cart from './pages/Cart';
-import {useState} from 'react'
+
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
-import CartProvider from './store/CartProvider';
+import CartProvider from './store/cart/CartProvider';
 
 const App = () => {
  

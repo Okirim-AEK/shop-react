@@ -1,18 +1,33 @@
-import React from 'react';
+import style from '../styles/demo.module.css'
+import {useContext} from 'react';
 import {useParams,useHistory} from 'react-router-dom'
 import useQuery from "../api/useQuery";
+import CartContext from '../store/cart/CartContext';
+
+
+
 function ProductDetail() {
+
+  const [state,dispatch] = useContext(CartContext);
+
    //params:{id:6 }
   const params = useParams();
   const history = useHistory();
  
     const url = `https://fakestoreapi.com/products/${params.id}`;
  
-const [product,isLoading,error]=useQuery(url)
+  const [product, isLoading, error] = useQuery(url)
+  const addProductToCart = ()=>{
+   //product_id
+   //product_qte
+    dispatch({type:"ADD_PRODUCT_TO_CART",payload:{product_id:params.id,product_qte:1}})
+ }
+
     return (
         <>
-        <button className='bg-green-500 text-green-100 rounded px-4 py-2 ml-4 mt-2'
-          onClick={()=>history.goBack()}>back</button>
+        <button className={`${style.demo} ${style.btn_back}`}
+          onClick={() => history.goBack()}>back</button>
+        
 <section className="text-gray-600 body-font overflow-hidden">
   <div className="container px-5 py-24 mx-auto">
     <div className="lg:w-4/5 mx-auto flex flex-wrap">
@@ -25,12 +40,13 @@ const [product,isLoading,error]=useQuery(url)
      
         <div className="flex mt-8">
                                 <span className="title-font font-medium text-2xl text-gray-900">{ product.price} $</span>
-          <button className="flex ml-auto text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded">Ajouter Au Panier</button>
+          <button onClick={addProductToCart} className="flex ml-auto text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded">Ajouter Au Panier</button>
          
         </div>
       </div>
     </div>
-  </div>
+          </div>
+          {state.products.map((el, i) => (<div className='ml-8' key={i}>{el.product_id} {el.product_qte }</div>))}
 </section>
 
         </>
@@ -38,3 +54,4 @@ const [product,isLoading,error]=useQuery(url)
 }
 
 export default ProductDetail;
+// cart: { products: [],productOnCart:0}

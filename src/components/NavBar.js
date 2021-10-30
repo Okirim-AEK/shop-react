@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import useQuery from '../api/useQuery';
 import {
     Link, NavLink
@@ -14,13 +14,13 @@ function NavBar() {
         setIsOpen(!isOpen)
     };
     const renderCat = categories.map((category, i) => (
-        //['jewlery',.....]
         <Link key={i}  to={`/products/category/${category}`}>
             <div >
                 {category}
             </div>
         </Link>
     ));
+
     useEffect(() => {
         let start = true;
         

@@ -1,11 +1,18 @@
-import React, { useContext } from 'react';
-import CartContext from '../store/CartContext';
+import React, { useContext,useEffect, useMemo,useState } from 'react';
+import CartContext from '../store/cart/CartContext';
 
 function Cart() {
-    const ctx = useContext(CartContext);
+    const [] = useContext(CartContext);
+    const [counter, setCounter] = useState(0);
+    useEffect(() => {
+        
+    }, []);
+
+   
+
     return (
         <div>
-            {ctx.color}
+           
         </div>
     );
 }
